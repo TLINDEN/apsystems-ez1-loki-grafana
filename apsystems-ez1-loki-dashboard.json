@@ -1,0 +1,562 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 31,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "HgMcR8Z4k"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 38,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max",
+            "sum",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "HgMcR8Z4k"
+          },
+          "editorMode": "code",
+          "expr": "max_over_time({filename=\"/var/log/solar.metric\"} |= `p1` | logfmt | unwrap p1 | __error__=\"\" [5m]) by (instance)",
+          "legendFormat": "Panel 1",
+          "queryType": "range",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "HgMcR8Z4k"
+          },
+          "editorMode": "code",
+          "expr": "max_over_time({filename=\"/var/log/solar.metric\"} |= `p2` | logfmt | unwrap p2 | __error__=\"\" [5m]) by (instance)",
+          "hide": false,
+          "legendFormat": "Panel 2",
+          "queryType": "range",
+          "refId": "B"
+        }
+      ],
+      "title": "Total Power Output",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Total",
+            "binary": {
+              "left": "Panel 1",
+              "reducer": "sum",
+              "right": "Panel 2"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "HgMcR8Z4k"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 38,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max",
+            "sum",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "HgMcR8Z4k"
+          },
+          "editorMode": "code",
+          "expr": "max_over_time({filename=\"/var/log/solar.metric\"} |= `p1` | logfmt | unwrap p1 | __error__=\"\" [5m]) by (instance)",
+          "legendFormat": "Panel 1",
+          "queryType": "range",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "HgMcR8Z4k"
+          },
+          "editorMode": "code",
+          "expr": "max_over_time({filename=\"/var/log/solar.metric\"} |= `p2` | logfmt | unwrap p2 | __error__=\"\" [5m]) by (instance)",
+          "hide": false,
+          "legendFormat": "Panel 2",
+          "queryType": "range",
+          "refId": "B"
+        }
+      ],
+      "title": "Power Output by Panel",
+      "transformations": [],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "HgMcR8Z4k"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 6,
+        "x": 0,
+        "y": 9
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "firstNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "text": {
+          "titleSize": 14,
+          "valueSize": 14
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "HgMcR8Z4k"
+          },
+          "editorMode": "code",
+          "expr": "{filename=\"/var/log/solar.metric\"} | logfmt",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "PV Info",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "format": "json",
+            "replace": false,
+            "source": "labels"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Line": true,
+              "Time": true,
+              "filename": true,
+              "id": true,
+              "job": true,
+              "labels": true,
+              "p1": false,
+              "p2": false,
+              "ts": false,
+              "tsNs": true,
+              "version": false
+            },
+            "indexByName": {
+              "Line": 2,
+              "Time": 1,
+              "deviceid": 6,
+              "filename": 7,
+              "id": 4,
+              "ip": 8,
+              "job": 9,
+              "labels": 0,
+              "maxpower": 10,
+              "minpower": 11,
+              "p1": 12,
+              "p2": 13,
+              "ssid": 14,
+              "ts": 5,
+              "tsNs": 3,
+              "version": 15
+            },
+            "renameByName": {
+              "deviceid": "Device ID",
+              "ip": "IP",
+              "job": "",
+              "maxpower": "Max Power",
+              "minpower": "Min Power",
+              "p1": "Current Power Output Panel 1",
+              "p2": "Current Power Output Panel 2",
+              "ssid": "WIFI SSID",
+              "ts": "Responsed",
+              "version": "Version"
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Responsed"
+              }
+            ]
+          }
+        },
+        {
+          "disabled": true,
+          "id": "reduce",
+          "options": {
+            "labelsToFields": false,
+            "reducers": []
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "HgMcR8Z4k"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-RdYlGr"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "watth"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 18,
+        "x": 6,
+        "y": 9
+      },
+      "id": 7,
+      "maxDataPoints": 14,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "max",
+            "lastNotNull",
+            "sum"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "10.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "HgMcR8Z4k"
+          },
+          "editorMode": "code",
+          "expr": "sum by (instance) (sum_over_time({filename=\"/var/log/solar.metric\"} |= \"p1\" | logfmt | __error__ = \"\" | unwrap p1 [24h])) / 24",
+          "key": "Q-ea8d689d-0562-4064-a378-2e92ce48de63-0",
+          "legendFormat": "Panel1",
+          "queryType": "range",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "HgMcR8Z4k"
+          },
+          "editorMode": "code",
+          "expr": "sum by (instance) (sum_over_time({filename=\"/var/log/solar.metric\"} |= \"p2\" | logfmt | __error__ = \"\" | unwrap p2 [24h])) / 24",
+          "hide": false,
+          "legendFormat": "Panel2",
+          "queryType": "range",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": "now-14d",
+      "title": "Total Power Output per Day",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Total Kw/h",
+            "binary": {
+              "left": "Panel1",
+              "reducer": "sum",
+              "right": "Panel2"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "barchart"
+    }
+  ],
+  "refresh": "1m",
+  "schemaVersion": 37,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Solar",
+  "uid": "c99fbea1-6d83-4976-bfd4-3e576ded13b2",
+  "version": 29,
+  "weekStart": ""
+}
