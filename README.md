@@ -46,6 +46,11 @@ like system will do. Just make sure you have SSH access and it has
 `curl` and `jq` installed and `crond` is enabled. No root permissions
 are required.
 
+The following steps can be omitted if you decide to use the python
+library mentioned above. Just write a script which uses it to generate
+the same output as the shell script here does. Sample output can be
+seen below. You can then use the dashboard with your logs as described here.
+
 ## Copy the scraper script to the collector device
 
 Copy the file
