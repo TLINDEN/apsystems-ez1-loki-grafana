@@ -15,8 +15,8 @@ if test -n "$data"; then
  e2="${params[4]}"
  te2="${params[5]}"
 else
-    echo "$ts ot no data!"
-    return
+    echo "$ts got no data!"
+    exit
 fi
 
 infodata=$(curl -s http://$host/$info | jq -r '.data | join (" ")')
@@ -31,8 +31,8 @@ if test -n "$infodata"; then
  minpower="${params[5]}"
  maxpower="${params[6]}"
 else
-    echo "$ts ot no info!"
-    return
+    echo "$ts got no info!"
+    exit
 fi
 
 if test -n "$p1" -a -n "$ip"; then
