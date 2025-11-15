@@ -21,7 +21,7 @@ a [Grafana](https://github.com/grafana/grafana) instance. I feed the
 generated logs into [Loki](https://github.com/grafana/loki) and
 visualze it then in a nice dashboard:
 
-![Screenshot](https://github.com/TLINDEN/apsystems-ez1-loki-grafana/blob/main/dashboard-screenshot.png)
+![Screenshot](dashboard-screenshot.png)
 
 # Installation
 
@@ -54,7 +54,7 @@ seen below. You can then use the dashboard with your logs as described here.
 ## Copy the scraper script to the collector device
 
 Copy the file
-[scrape-inverter.sh](https://github.com/TLINDEN/apsystems-ez1-loki-grafana/blob/main/scrape-inverter.sh)
+[scrape-inverter.sh](https://codeberg.org/scip/apsystems-ez1-loki-grafana/raw/branch/main/scrape-inverter.sh)
 to the collector device. Ensure it is executable:
 
 `chmod 755 scrape-inverter.sh`
@@ -116,12 +116,12 @@ explorer, make sure to set the source to Loki:
 
 It should look like this:
 
-![Screenshot](https://github.com/TLINDEN/apsystems-ez1-loki-grafana/blob/main/lokiexplore.png)
+![Screenshot](lokiexplore.png)
 
 ## Install the Grafana dashboard
 
 If the logs show up in Loki, create a new dashboard. Import the file
-[apsystems-ez1-loki-dashboard.json](https://github.com/TLINDEN/apsystems-ez1-loki-grafana/blob/main/apsystems-ez1-loki-dashboard.json)
+[apsystems-ez1-loki-dashboard.json](https://codeberg.org/scip/apsystems-ez1-loki-grafana/raw/branch/main/apsystems-ez1-loki-dashboard.json)
 as JSON.
 
 You may modify the queries to match the filename you are using for
@@ -130,7 +130,7 @@ your logfile or course.
 
 # Report bugs
 
-[Please open an issue](https://github.com/TLINDEN/apsystems-ez1-loki-grafana/issues). Thanks!
+[Please open an issue](https://codeberg.org/scip/apsystems-ez1-loki-grafana/issues). Thanks!
 
 # License
 
