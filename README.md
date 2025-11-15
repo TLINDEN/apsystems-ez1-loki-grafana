@@ -1,3 +1,6 @@
+> [!CAUTION]
+> This software is now being maintained on [Codeberg](https://codeberg.org/scip/apsystems-ez1-loki-grafana/).
+
 # apsystems-ez1-loki-grafana
 
 Scraper and Grafana Dashboard for ApSystems EZ1 Solar Inverter
